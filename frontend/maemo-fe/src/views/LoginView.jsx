@@ -9,10 +9,16 @@ import Modal from '@material-ui/core/Modal';
 import InModal from '../components/common/modal'
 import InModalOption from '../components/common/modalDiv'
 import { getRandomKey } from '../utils/random'
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../actions/users';
+import { postAxios } from '../api/axios';
 
 const typeList = ["장애인", "임산부", "고령자", "영유아", "동반자", "어린이", "해당없음"]
 
 const LoginView = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false)
 	const [name, setName] = useState("")
 	const [phone, setPhone] = useState("")
@@ -67,6 +73,24 @@ const LoginView = () => {
 		margin-bottom: 30px;
 	`
 
+  const submitHandler = async () => {
+    try {
+      const req = {
+        name,
+        phoneNumber: phone,
+        userType,
+        challenge,
+        relate,
+        relatePhone,
+      }
+      const res = await postAxios('/login', req)
+      dispatch(login(res.data.token))
+      history.push("/")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <Container>
       <MainInfo>사용자 정보를 입력하세요.</MainInfo>
@@ -84,7 +108,7 @@ const LoginView = () => {
       <InputTitle>보호자 정보(선택)</InputTitle>
 			<Input onChange={relateHandler} relate placeholder="관계"></Input>
       <Input onChange={relatePhoneHandler} relatePhone placeholder="전화번호를 입력하세요."></Input>
-      <SubmitButton>확인</SubmitButton>
+      <SubmitButton onClick={submitHandler}>확인</SubmitButton>
     </Container>
   );
 }
