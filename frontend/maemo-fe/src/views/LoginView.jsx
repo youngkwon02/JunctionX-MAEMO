@@ -6,11 +6,17 @@ import SubmitButton from "../components/LoginView/button/submitButton";
 import Modal from '@material-ui/core/Modal';
 import InModal from '../components/common/modal'
 import InModalOption from '../components/common/modalDiv'
+import { getRandomKey } from '../utils/random'
 
-const typeList = ["장애인, 임산부, 고령자, 영유아 동반자, 어린이, 해당없음"]
+const typeList = ["장애인", "임산부", "고령자", "영유아", "동반자", "어린이", "해당없음"]
 
 const LoginView = () => {
   const [open, setOpen] = useState(false)
+  const [userType, setUserType] = useState("")
+
+  const userTypeHandler = (e) => {
+    setUserType(e.target.innerHTML)
+  }
 
   const handleOpen = () => {
     setOpen(true);
@@ -20,11 +26,11 @@ const LoginView = () => {
     setOpen(false);
   };
 
+  const AnyModals = typeList.map((ty) => (<InModalOption key={getRandomKey()} onClick={userTypeHandler} onClose={() => handleClose()}>{ty}</InModalOption>))
+
   const InModalBox = (
     <>
-      <InModal>{typeList.map((ty) => {
-        return (<InModalOption>{ty}</InModalOption>)
-      })}</InModal>
+      <InModal>{AnyModals}</InModal>
     </>
   );
 

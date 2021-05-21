@@ -3,15 +3,23 @@ import styled from 'styled-components'
 
 const Options = styled.div`
   margin-top: 5%;
+  line-height: 40px;
   width: 100%;
-  height: 10%;
-  background-color: red;
+  height: 40px;
+  background-color: white;
+  border-radius: 30px;
+  &:hover {
+    background-color: yellow;
+  }
 `
 
-const ModalOption = ({children}) => {
+const ModalOption = ({children, ...props}) => {
   return (
     <>
-      <Options>{children}</Options>
+      <Options onClick={(e) => {
+        props.onClick(e)
+        props.onClose()
+      }}>{children}</Options>
     </>
   )
 }
