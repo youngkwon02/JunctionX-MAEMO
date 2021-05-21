@@ -12,9 +12,9 @@ const StyledMenu = styled.button`
     border-radius: 16px;
 `;
 
-const Menu = ({children}) => {
+const Menu = ({children, history, url}) => {
     return (
-        <StyledMenu>
+        <StyledMenu onClick={() => history.push(url)}>
         {children}
         </StyledMenu>
     )
