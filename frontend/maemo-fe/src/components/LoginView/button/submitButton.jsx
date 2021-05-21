@@ -2,17 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledSubmitButton = styled.button`
-    width: 100ox;
-    height: 100px;
-    border-radius: 12px;
-    background-color: #blue;
+    width: 80%;
+    height: 50px;
+    background-color: #fef000;
     color: black;
+    border: none;
+    font-weight: bold;
 `;
 
-const SubmitButton = ({text}) => {
+const SubmitButton = ({children}) => {
     return (
         <StyledSubmitButton type="submit">
-            {text}
+        {children}
         </StyledSubmitButton>
     )
 }
+
+export default SubmitButton;
