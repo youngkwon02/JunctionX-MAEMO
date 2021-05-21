@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import Container from "../components/LoginView/div/container";
-import InputTitle from "../components/LoginView/input-title/title";
+import InputTitle from "../components/LoginView/div/title";
 import Input from "../components/LoginView/input/input";
 import SubmitButton from "../components/LoginView/button/submitButton";
 import Modal from '@material-ui/core/Modal';
