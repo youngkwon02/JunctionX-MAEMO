@@ -5,6 +5,7 @@ const StyledInputTitle = styled.div`
     color: black;
     font-weight: bold;
     border: none;
+    font-size: .8em;
 `;
 
 const InputTitle = ({children}) => {
