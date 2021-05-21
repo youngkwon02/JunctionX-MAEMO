@@ -28,7 +28,7 @@ const StyledInput = styled.input`
 const Input = ({children, ...props}) => {
     return (
         <>
-            <StyledInput type="input" {...props} placeholder={props.placeholder}></StyledInput>
+            <StyledInput type="input" {...props} onChange={props.onChange} placeholder={props.placeholder}></StyledInput>
         </>
     )
 }
