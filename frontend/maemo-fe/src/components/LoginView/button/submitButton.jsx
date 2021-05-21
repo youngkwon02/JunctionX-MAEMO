@@ -12,9 +12,9 @@ const StyledSubmitButton = styled.button`
     border-radius: 14px;
 `;
 
-const SubmitButton = ({children}) => {
+const SubmitButton = ({children, ...props}) => {
     return (
-        <StyledSubmitButton type="submit">
+        <StyledSubmitButton onClick={props.onClick} type="submit">
         {children}
         </StyledSubmitButton>
     )
