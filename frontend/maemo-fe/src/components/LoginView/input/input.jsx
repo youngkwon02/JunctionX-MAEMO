@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledLoginInput = styled.input`
+const StyledInput = styled.input`
     width: 100%;
     height: 30px;
     color: black;
@@ -10,12 +10,12 @@ const StyledLoginInput = styled.input`
     font-weight: bold;
 `;
 
-const LoginInput = ({...props}) => {
+const Input = ({...props}) => {
     return (
         <>
-            <StyledLoginInput type="input" placeholder={props.placeholder}></StyledLoginInput>
+            <StyledInput type="input" placeholder={props.placeholder}></StyledInput>
         </>
     )
 }
 
-export default LoginInput;
+export default Input;
