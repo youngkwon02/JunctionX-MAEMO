@@ -21,7 +21,9 @@ DEFAULT_APPS = [
     'django.contrib.staticfiles',
 ]
 PROJECT_APPS = [
-
+    'accounts',
+    'reservation',
+    'location',
 ]
 
 COMMON_APPS = [    
@@ -113,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = 'Asia/Seoul'
+LANGUAGE_CODE = 'ko-KR'
 
 TIME_ZONE = 'Asia/Seoul'
 
