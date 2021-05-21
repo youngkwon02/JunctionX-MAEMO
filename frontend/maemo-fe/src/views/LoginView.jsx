@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import Container from "../components/LoginView/div/container";
 import InputTitle from "../components/LoginView/div/title";
 import Input from "../components/LoginView/input/input";
-import RelateType from "../components/LoginView/input/relateType";
-import RelateOption from "../components/LoginView/input/relateOption";
 import SubmitButton from "../components/LoginView/button/submitButton";
 
 const LoginView = () => {

@@ -8,6 +8,7 @@ const StyledSubmitButton = styled.button`
     color: black;
     border: none;
     font-weight: bold;
+    margin-top: 30px;
 `;
 
 const SubmitButton = ({children}) => {

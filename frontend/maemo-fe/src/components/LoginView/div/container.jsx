@@ -7,13 +7,14 @@ const StyledContainer = styled.div`
     width: 250px;
     min-width: 250px;
     max-width: 250px;
-    height: 380px;
-    min-height: 380px;
+    height: 420px;
+    min-height: 420px;
+    max-height: 420px;
     margin: auto;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -190px;
+    margin-top: -210px;
     margin-left: -145px;
 `;
 
