@@ -1,7 +1,7 @@
 from pathlib import Path
+import datetime
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 
 SECRET_KEY = 'django-insecure-x!2b9k(@q=^(b9q4nbs9+3grvi^=_%6*suo28t++5t0^i#k2av'
@@ -40,7 +40,33 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
+
+REST_FRAMEWORK = {  # 추가
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+
+
+JWT_AUTH = {  # 추가
+    'JWT_SECRET_KEY': SECRET_KEY,
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=30),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=3),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'django_rest_api.global_utils.custom_response.my_jwt_response_handler'
+}
+
 
 ROOT_URLCONF = 'maemo_rest_api.urls'
 
@@ -89,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'Asia/Seoul'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
