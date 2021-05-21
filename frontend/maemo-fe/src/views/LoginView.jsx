@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import Container from "../components/LoginView/div/container";
-import InputTitle from "../components/LoginView/input-title/title";
+import InputTitle from "../components/LoginView/div/title";
 import Input from "../components/LoginView/input/input";
+import UserTypeBox from "../components/LoginView/div/userTypeBox";
 import SubmitButton from "../components/LoginView/button/submitButton";
 import Modal from '@material-ui/core/Modal';
 import InModal from '../components/common/modal'
@@ -13,7 +14,12 @@ const typeList = ["장애인", "임산부", "고령자", "영유아", "동반자
 
 const LoginView = () => {
   const [open, setOpen] = useState(false)
-  const [userType, setUserType] = useState("")
+	const [name, setName] = useState("")
+	const [phone, setPhone] = useState("")
+  const [userType, setUserType] = useState("해당없음")
+	const [challenge, setChallenge] = useState("")
+	const [relate, setRelate] = useState("")
+	const [relatePhone, setRelatePhone] = useState("")
 
   const userTypeHandler = (e) => {
     setUserType(e.target.innerHTML)
@@ -27,6 +33,26 @@ const LoginView = () => {
     setOpen(false);
   };
 
+	const nameHandler = (e) => {
+		setName(e.target.value);
+	}
+
+	const phoneHandler = (e) => {
+		setPhone(e.target.value);
+	}
+
+	const challengeHandler = (e) => {
+		setChallenge(e.target.value);
+	}
+
+	const relateHandler = (e) => {
+		setRelate(e.target.value);
+	}
+
+	const relatePhoneHandler = (e) => {
+		setRelatePhone(e.target.value);
+	}
+
   const AnyModals = typeList.map((ty) => (<InModalOption key={getRandomKey()} onClick={userTypeHandler} onClose={() => handleClose()}>{ty}</InModalOption>))
 
   const InModalBox = (
@@ -35,11 +61,6 @@ const LoginView = () => {
     </>
   );
 
-  const Temp = styled.div`
-    width: 100px;
-    height: 100px;
-    background-color: red;
-  `
   const MainInfo = styled.div`
 		text-align: center;
 		font-weight: bold;
@@ -50,19 +71,19 @@ const LoginView = () => {
     <Container>
       <MainInfo>사용자 정보를 입력하세요.</MainInfo>
       <InputTitle>이름</InputTitle>
-      <Input placeholder="이름을 입력하세요."></Input>
+      <Input onChange={nameHandler} placeholder="이름을 입력하세요."></Input>
       <InputTitle>전화번호</InputTitle>
-      <Input placeholder="전화번호를 입력하세요."></Input>
+      <Input onChange={phoneHandler} placeholder="전화번호를 입력하세요."></Input>
       <InputTitle>사용자 타입</InputTitle>
-      <Temp onClick={handleOpen}></Temp>
+      <UserTypeBox onClick={handleOpen}>{userType}</UserTypeBox>
       <Modal open={open} onClose={handleClose}>
           {InModalBox}
       </Modal>
       <InputTitle>장애유형</InputTitle>
-      <Input placeholder="유형을 입력하세요."></Input>
+      <Input onChange={challengeHandler} placeholder="유형을 입력하세요."></Input>
       <InputTitle>보호자 정보(선택)</InputTitle>
-			<Input relate placeholder="관계"></Input>
-      <Input relatePhone placeholder="전화번호를 입력하세요."></Input>
+			<Input onChange={relateHandler} relate placeholder="관계"></Input>
+      <Input onChange={relatePhoneHandler} relatePhone placeholder="전화번호를 입력하세요."></Input>
       <SubmitButton>확인</SubmitButton>
     </Container>
   );
