@@ -8,6 +8,7 @@ const StyledInput = styled.input`
     border: none;
     border-bottom: 2px solid rgba(10, 10, 10, .1);
     font-weight: bold;
+    margin-bottom: 10px;
     ${(props) =>
         props.relatePhone &&
         css`
