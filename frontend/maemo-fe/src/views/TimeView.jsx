@@ -42,9 +42,39 @@ const RightToggle = styled.div`
 
 const TimeView = () => {
   const [toggle, setToggle] = useState(true)
+  const [year, setYear] = useState("")
+  const [month, setMonth] = useState("")
+  const [day, setDay] = useState("")
+  const [hour, setHour] = useState("")
+  const [min, setMin] = useState("")
 
   const toggleHandler = () => {
     setToggle(!toggle)
+  }
+
+  const yearHandler = (e) => {
+    setYear(e.target.value)
+    console.log(year)
+  }
+
+  const monthHandler = (e) => {
+    setMonth(e.target.value)
+    console.log(month)
+  }
+
+  const dayHandler = (e) => {
+    setDay(e.target.value)
+    console.log(day)
+  }
+
+  const hourHandler = (e) => {
+    setHour(e.target.value)
+    console.log(hour)
+  }
+
+  const minHandler = (e) => {
+    setMin(e.target.value)
+    console.log(min)
   }
 
 
@@ -53,20 +83,20 @@ const TimeView = () => {
       <MainInfo>언제 이동하실 예정인가요?</MainInfo>
       <Wrapper>
         <Tags>날짜</Tags>
-        <Input></Input>
+        <Input onChange={yearHandler} ></Input>
         <Tags>년</Tags>
-        <Input></Input>
+        <Input onChange={monthHandler}></Input>
         <Tags>월</Tags>
-        <Input></Input>
+        <Input onChange={dayHandler}></Input>
         <Tags>일</Tags>
       </Wrapper>
       <Wrapper>
         <Tags>시간</Tags>
         <LeftToggle onClick={() => toggleHandler()} time={toggle}>오전</LeftToggle>
         <RightToggle onClick={() => toggleHandler()} time={toggle}>오후</RightToggle>
-        <Input></Input>
+        <Input onChange={hourHandler}></Input>
         <Tags>시</Tags>
-        <Input></Input>
+        <Input onChange={minHandler}></Input>
         <Tags>분</Tags>
       </Wrapper>
       <SubmitButton>다음</SubmitButton>

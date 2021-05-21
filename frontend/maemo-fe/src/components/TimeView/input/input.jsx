@@ -5,10 +5,10 @@ const NumInput = styled.input`
   width: 50px;
 `
 
-const Input = () => {
+const Input = ({onChange}) => {
   return (
     <>
-      <NumInput></NumInput>
+      <NumInput onChange={onChange}></NumInput>
     </>
   )
 }
