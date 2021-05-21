@@ -11,6 +11,12 @@ const StyledInput = styled.input`
     margin-bottom: 10px;
     padding: 0 10px;
     ${(props) =>
+        props.relate &&
+        css`
+        	display: inline-block;
+        	width: 12%;
+    `}
+    ${(props) =>
         props.relatePhone &&
         css`
           display: inline-block;

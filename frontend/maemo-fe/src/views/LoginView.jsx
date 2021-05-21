@@ -23,9 +23,7 @@ const LoginView = () => {
         <InputTitle>장애유형</InputTitle>
         <Input placeholder="유형을 입력하세요."></Input>
         <InputTitle>보호자 정보(선택)</InputTitle>
-        <RelateType>
-            <RelateOption value=""></RelateOption>
-        </RelateType>
+				<Input relate placeholder="관계"></Input>
         <Input relatePhone placeholder="전화번호를 입력하세요."></Input>
         <SubmitButton>확인</SubmitButton>
     </Container>
