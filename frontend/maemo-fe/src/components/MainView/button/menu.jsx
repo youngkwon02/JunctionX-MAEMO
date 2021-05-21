@@ -1,23 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledSubmitButton = styled.button`
+const StyledMenu = styled.button`
     width: 100%;
     height: 50px;
     background-color: #fef000;
     color: black;
     border: none;
     font-weight: bold;
-    margin-top: 30px;
-    border-radius: 14px;
+    margin: 14px 0px;
+    border-radius: 16px;
 `;
 
-const SubmitButton = ({children}) => {
+const Menu = ({children}) => {
     return (
-        <StyledSubmitButton type="submit">
+        <StyledMenu>
         {children}
-        </StyledSubmitButton>
+        </StyledMenu>
     )
 }
 
-export default SubmitButton;
+export default Menu;

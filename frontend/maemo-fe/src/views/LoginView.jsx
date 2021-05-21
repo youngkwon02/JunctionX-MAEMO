@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import Container from "../components/LoginView/div/container";
 import InputTitle from "../components/LoginView/input-title/title";
-import NameInput from "../components/LoginView/input/nameInput";
+import Input from "../components/LoginView/input/input";
 import SubmitButton from "../components/LoginView/button/submitButton";
 import Modal from '@material-ui/core/Modal';
 import InModal from '../components/common/modal'
@@ -39,20 +40,31 @@ const LoginView = () => {
     height: 100px;
     background-color: red;
   `
+  const MainInfo = styled.div`
+		text-align: center;
+		font-weight: bold;
+		margin-bottom: 30px;
+	`
 
   return (
-    <>
+    <Container>
+      <MainInfo>사용자 정보를 입력하세요.</MainInfo>
       <InputTitle>이름</InputTitle>
-      <NameInput placeholder="이름을 입력하세요."></NameInput>
+      <Input placeholder="이름을 입력하세요."></Input>
       <InputTitle>전화번호</InputTitle>
-      <NameInput placeholder="전화번호를 입력하세요."></NameInput>
+      <Input placeholder="전화번호를 입력하세요."></Input>
       <InputTitle>사용자 타입</InputTitle>
       <Temp onClick={handleOpen}></Temp>
       <Modal open={open} onClose={handleClose}>
           {InModalBox}
       </Modal>
+      <InputTitle>장애유형</InputTitle>
+      <Input placeholder="유형을 입력하세요."></Input>
+      <InputTitle>보호자 정보(선택)</InputTitle>
+			<Input relate placeholder="관계"></Input>
+      <Input relatePhone placeholder="전화번호를 입력하세요."></Input>
       <SubmitButton>확인</SubmitButton>
-    </>
+    </Container>
   );
 }
 
