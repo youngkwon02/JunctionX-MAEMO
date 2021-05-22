@@ -30,13 +30,20 @@ const BookElem = ({children, ...props}) => {
     `}
 	`;
 
+  const standardTime = (d, is_am) => {
+    const [date, time] = d.split("T")
+    const [y, m, day]  = date.split("-")
+    const [h, min, sec] = time.split("+")[0].split(":")
+    return `${y}년 ${m}월 ${day}일 ${is_am ? "오전" : "오후"} ${h}시 ${min}분`
+  }
+
   return (
       <>
         <StyledBookElem>
-          <BookElemTop>예약번호 {props.data.seq}</BookElemTop>
-          <Line bold>{props.data.time}</Line>
-          <Line><LineTitle>출발 위치</LineTitle>{props.data.start}</Line>
-          <Line><LineTitle>도착 위치</LineTitle>{props.data.end}</Line>
+          <BookElemTop>예약번호 {props.num}</BookElemTop>
+          <Line bold>{standardTime(props.data.date, props.data.is_am)}</Line>
+          <Line><LineTitle>출발 위치</LineTitle>{props.data.start_point}</Line>
+          <Line><LineTitle>도착 위치</LineTitle>{props.data.end_point}</Line>
         </StyledBookElem>
       </>
   )

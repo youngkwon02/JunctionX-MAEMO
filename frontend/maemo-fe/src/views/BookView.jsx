@@ -6,7 +6,6 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { getRandomKey } from '../utils/random'
 import { useHistory } from 'react-router-dom';
 import { getAxios } from '../api/axios';
-import axios from 'axios';
 
 const bookList = [
   {
@@ -36,12 +35,12 @@ height: 20px;
 
 const BookView = () => {
   const history = useHistory();
-  const [data, setData] = useState({})
+  const [reservation, setReservation] = useState([])
 
   const getBookList = async () => {
     try {
       const res = await getAxios('/reservation')
-      setData(res)
+      setReservation(res.data)
     } catch (error) {
       console.log(error)
     }
@@ -51,11 +50,10 @@ const BookView = () => {
     getBookList()
   }, [])
 
-  const Books = bookList.map((book) => (<BookElem key={getRandomKey()} data={book}></BookElem>));
+  const Books = reservation.map((book, idx) => (<BookElem key={getRandomKey()} data={book} num={idx+1}></BookElem>));
 
   return (
     <Container>
-      {data}
       <BackIconBox>
         <ArrowBackIcon onClick={() => history.push("/main")}></ArrowBackIcon>
       </BackIconBox>
