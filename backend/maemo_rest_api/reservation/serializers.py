@@ -53,6 +53,7 @@ class ReservationCreateSerializer(serializers.ModelSerializer):
         )
 
     def update(self, guestbook, validated_data):
+        print(validated_data)
         return super().update(guestbook, validated_data)
 
     
