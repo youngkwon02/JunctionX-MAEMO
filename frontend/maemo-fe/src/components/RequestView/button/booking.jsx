@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import styled from 'styled-components';
 
-const StyledSubmitButton = styled.button`
+const StyledBookingButton = styled.button`
     width: 100%;
     height: 50px;
     background-color: #fef000;
@@ -12,12 +12,12 @@ const StyledSubmitButton = styled.button`
     border-radius: 14px;
 `;
 
-const SubmitButton = ({children, ...props}) => {
+const BookingButton = ({children, ...props}) => {
     return (
-        <StyledSubmitButton onClick={props.onClick} type="submit">
+        <StyledBookingButton onClick={props.onClick} type="submit">
         {children}
-        </StyledSubmitButton>
+        </StyledBookingButton>
     )
 }
 
-export default SubmitButton;
+export default BookingButton;

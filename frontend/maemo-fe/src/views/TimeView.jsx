@@ -135,7 +135,12 @@ const TimeView = () => {
         <Tags>분</Tags>
         </div>
       </Wrapper>
-      <SubmitButton>다음</SubmitButton>
+      <SubmitButton onClick = {() => {
+        const data = `${year}-${month}-${day}-${toggle ? "오전" : "오후"}-${hour}-${min}`
+        history.push({
+          pathname: "/position",
+          state: {"timeData": data}
+        })}}>다음</SubmitButton>
     </Container>
   )
 }

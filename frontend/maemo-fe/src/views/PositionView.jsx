@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react'
 import styled, {css} from 'styled-components'
 import PositionBottom from '../components/PositionView/positionBottom'
 import axios from 'axios'
-import {useHistory} from 'react-router-dom'
+import {useHistory, useLocation} from 'react-router-dom'
 
 const PositionView = () => {
+  const location = useLocation()
+  console.log(location.state)
   const history = useHistory()
   const [startPoint, setStart] = useState("")
   const [endPoint, setEnd] = useState("")
@@ -127,8 +129,12 @@ const PositionView = () => {
   const nextToggle = (
     <NextBtn onClick = {() => {history.push({
       pathname: "/request",
-      state: {"startLocation": startLocation,
-              "endLocation": endLocation
+      state: {
+              "timeData": location.state.timeData,
+              "startLocation": startLocation,
+              "endLocation": endLocation,
+              "startPosition": document.querySelector('#startPoint').value.split(","),
+              "endPosition": document.querySelector('#endPoint').value.split(",")
             }
     })}}>다음</NextBtn>
   )
