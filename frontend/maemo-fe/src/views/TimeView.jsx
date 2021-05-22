@@ -103,13 +103,13 @@ const TimeView = () => {
       <MainInfo>언제 이동하실 예정인가요?</MainInfo>
       <Wrapper>
         <div>
-        <Tags head>날짜</Tags>
-        <Input onChange={yearHandler} ></Input>
-        <Tags year>년</Tags>
-        <Input onChange={monthHandler}></Input>
-        <Tags>월</Tags>
-        <Input onChange={dayHandler}></Input>
-        <Tags>일</Tags>
+          <Tags head>날짜</Tags>
+          <Input onChange={yearHandler} ></Input>
+          <Tags year>년</Tags>
+          <Input onChange={monthHandler}></Input>
+          <Tags>월</Tags>
+          <Input onChange={dayHandler}></Input>
+          <Tags>일</Tags>
         </div>
       </Wrapper>
       <Wrapper>
