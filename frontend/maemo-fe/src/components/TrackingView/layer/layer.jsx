@@ -45,7 +45,7 @@ const Layer = ({children, ...props}) => {
           <ImageContainer>
           <img src={warning} alt="ProfileImg" width="100%" height="50%" style={{"margin": "10px 0px"}}/>
           {children}
-          <img src={closeBtn} width="40px" height="40px" ></img>
+          <img src={closeBtn} width="40px" height="40px" onClick={ () => {document.querySelector('#warning-layer').style.display = "none";}} ></img>
           </ImageContainer>
           </StyledLayer>
         </>

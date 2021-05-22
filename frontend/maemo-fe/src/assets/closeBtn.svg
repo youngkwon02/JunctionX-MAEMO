@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="70" height="70" viewBox="0 0 70 70">
   <defs>
-    <filter id="i1234" x="0" y="0" width="70" height="70" filterUnits="userSpaceOnUse">
+    <filter id="타원_68" x="0" y="0" width="70" height="70" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur"/>
       <feFlood flood-opacity="0.161"/>
@@ -8,7 +8,13 @@
       <feComposite in="SourceGraphic"/>
     </filter>
   </defs>
-  <g transform="matrix(1, 0, 0, 1, 0, 0)" >
-    <circle id="i1234-2" data-name="1234" cx="26" cy="26" r="26" transform="translate(9 6)" fill="#fef001"/>
+  <g id="그룹_18470" data-name="그룹 18470" transform="translate(-340 -1072)">
+    <g transform="matrix(1, 0, 0, 1, 340, 1072)" filter="url(#타원_68)">
+      <circle id="타원_68-2" data-name="타원 68" cx="26" cy="26" r="26" transform="translate(9 6)" fill="#fef001"/>
+    </g>
+    <g id="그룹_18469" data-name="그룹 18469" transform="translate(-601.467 656.402) rotate(-45)">
+      <rect id="사각형_23863" data-name="사각형 23863" width="3.705" height="25.933" transform="translate(372.114 994)" fill="#fff"/>
+      <rect id="사각형_23864" data-name="사각형 23864" width="3.705" height="25.933" transform="translate(386.933 1005.114) rotate(90)" fill="#fff"/>
+    </g>
   </g>
 </svg>
