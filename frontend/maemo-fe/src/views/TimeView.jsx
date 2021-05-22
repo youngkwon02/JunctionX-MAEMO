@@ -2,7 +2,9 @@ import React, {useState} from 'react'
 import styled, {css} from 'styled-components'
 import Container from '../components/TimeView/div/container'
 import SubmitButton from '../components/TimeView/button/submitButton'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Input from '../components/TimeView/input/input'
+import {useHistory} from 'react-router-dom'
 
 const MainInfo = styled.div`
   text-align: center;
@@ -58,9 +60,16 @@ const RightToggle = styled.div`
   margin-right: 6px;
 `
 
+const BackIconBox = styled.div`
+  width: 20px;
+  height: 20px;
+  position: fixed;
+  top: 20px;
+`
 
 
 const TimeView = () => {
+  const history = useHistory();
   const [toggle, setToggle] = useState(true)
   const [year, setYear] = useState("")
   const [month, setMonth] = useState("")
@@ -100,6 +109,9 @@ const TimeView = () => {
 
   return (
     <Container>
+      <BackIconBox>
+        <ArrowBackIcon onClick={() => history.push("/main")}></ArrowBackIcon>
+      </BackIconBox>
       <MainInfo>언제 이동하실 예정인가요?</MainInfo>
       <Wrapper>
         <div>
