@@ -16,15 +16,15 @@ function App() {
   const isLogin = useSelector(state => state.user.isLogin)
   const loginRouter = (
     <>
-      <Route path="/login" component={LoginView} />
-      <Redirect from ="*" to="/login" />
+      <Route exact path="/login" component={LoginView} />
+      <Route exact path="/" component={EnterView} />
+      <Redirect from ="*" to="/" />
     </>
   )
 
   const serviceRouter = (
     <>
       <Switch>
-        <Route exact path="/" component={EnterView}></Route>
         <Route exact path="/main" component={MainView}></Route>
         <Route path ="/book" component={BookView}></Route>
         <Route path ="/time" component={TimeView}></Route>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import mrKim from '../../../assets/mrKim.svg'
+import oH from '../../../assets/oH.png'
 
 const ImageContainer = styled.div`
     width: 100%;
@@ -20,7 +20,7 @@ const Hello = ({children}) => {
     return (
         <>
           <ImageContainer>
-            <img src={mrKim} alt="ProfileImg" width="100%" height="100%" />
+            <img src={oH} alt="ProfileImg" width="100%" height="100%" />
           </ImageContainer>
         	<StyledHello>
           {children} 님<br />

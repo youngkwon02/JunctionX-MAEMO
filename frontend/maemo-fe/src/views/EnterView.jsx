@@ -7,7 +7,7 @@ const EnterView = () => {
 
   return (
     <>
-    <MainSVG onClick={() => history.push("/main")} width="100%" height="100%"></MainSVG>
+    <MainSVG onClick={() => history.push("/login")} width="100%" height="100%"></MainSVG>
     </>
   );
 }
