@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
+
 const PositionView = () => {
   const [startPoint, setStart] = useState("")
   const [endPoint, setEnd] = useState("")
+  const [startLocation, setStartLocation] = useState("")
+  const [endLocation, setEndLocation] = useState("")
   useEffect(() => {
 
     const script = document.createElement("script");
@@ -14,7 +18,7 @@ const PositionView = () => {
             center: new Tmapv2.LatLng(37.566481622437934,126.98502302169841),
             width: "100%",
             height: "80%",
-            zoom:15
+            zoom:11
           });
           map.addListener("click", onClick);
         }
@@ -33,8 +37,8 @@ const PositionView = () => {
           markers.push(marker);
           if(markers.length === 2) {
             setTimeout(()=>{
-              document.querySelector('#startPoint').value = markers[0]._elementBounds._left + ',' + markers[0]._elementBounds._top;
-              document.querySelector('#endPoint').value = markers[1]._elementBounds._left + ',' + markers[1]._elementBounds._top;
+              document.querySelector('#startPoint').value = markers[0]._marker_data.options.position._lng + ',' + markers[0]._marker_data.options.position._lat
+              document.querySelector('#endPoint').value = markers[1]._marker_data.options.position._lng + ',' + markers[1]._marker_data.options.position._lat
             },500);
           }
         }
@@ -51,12 +55,36 @@ const PositionView = () => {
   }, []);
   
 
-
-
   const setPointState = () => {
     setStart((startPoint) => (document.querySelector('#startPoint').value));
     setEnd((endPoint) => (document.querySelector('#endPoint').value));
+    convert(true, document.querySelector('#startPoint').value.split(","))
+    convert(false, document.querySelector('#endPoint').value.split(","))
   }
+  const REST_API_KEY = "f3a651e3f7153a7dd0db7dca8d289354"
+  const convert = (location, pos) => {
+    const [x, y] = pos
+    location === true 
+      ?
+      axios({
+        method:'get',
+        headers: { Authorization: `KakaoAK ${REST_API_KEY}`, },
+        url: `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${x}&y=${y}`,
+      })
+        .then(function (response) {
+          setStartLocation(response.data.documents[1].address_name)
+        })
+      :
+      axios({
+        method:'get',
+        headers: { Authorization: `KakaoAK ${REST_API_KEY}`, },
+        url: `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${x}&y=${y}`,
+      })
+        .then(function (response) {
+          setEndLocation(response.data.documents[1].address_name)
+        });
+  }
+
 
   return (
     <>
@@ -69,9 +97,9 @@ const PositionView = () => {
     />
     <input type="text" id="startPoint"></input>
     <input type="text" id="endPoint"></input>
-    <div onClick = {() => {setPointState()}} style={{position: "absolute", bottom: "0"}}>test</div>
-    <div style={{position: "absolute", bottom: "20px"}}>{startPoint}</div>
-    <div style={{position: "absolute", bottom: "10px"}}>{endPoint}</div>
+    <div onClick = {() => setPointState()} style={{position: "absolute", bottom: "0"}}>적용하기</div>
+    <div style={{position: "absolute", bottom: "20px"}}>{startLocation}</div>
+    <div style={{position: "absolute", bottom: "10px"}}>{endLocation}</div>
     </>
   )
 }
