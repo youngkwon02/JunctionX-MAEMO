@@ -83,27 +83,22 @@ const TimeView = () => {
 
   const yearHandler = (e) => {
     setYear(e.target.value)
-    console.log(year)
   }
 
   const monthHandler = (e) => {
     setMonth(e.target.value)
-    console.log(month)
   }
 
   const dayHandler = (e) => {
     setDay(e.target.value)
-    console.log(day)
   }
 
   const hourHandler = (e) => {
     setHour(e.target.value)
-    console.log(hour)
   }
 
   const minHandler = (e) => {
     setMin(e.target.value)
-    console.log(min)
   }
 
 

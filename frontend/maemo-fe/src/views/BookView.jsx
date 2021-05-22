@@ -7,20 +7,6 @@ import { getRandomKey } from '../utils/random'
 import { useHistory } from 'react-router-dom';
 import { getAxios } from '../api/axios';
 
-const bookList = [
-  {
-    "seq": "01",
-    "time": "2021년 5월 22일 오후 5시",
-    "start": "중앙대학교 정문",
-    "end": "동묘앞역"
-  },
-  {
-    "seq": "02",
-    "time": "2021년 5월 23일 오후 7시",
-    "start": "동묘앞역",
-    "end": "중앙대학교 정문"
-  }
-];
 const BookTitle = styled.div`
 font-size: 1.2em;
 text-align: center;
