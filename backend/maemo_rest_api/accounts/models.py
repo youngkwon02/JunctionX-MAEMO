@@ -10,6 +10,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     INFANT_COMPANION = 'infant_companion'
     PREGNANT = 'pregnant'
     CHILD = 'child'
+    OLD = 'old'
 
     FAMILY = 'family'
     SIBLING = 'sibling'
@@ -24,6 +25,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         (PREGNANT, 'PREGNANT'),
         (INFANT_COMPANION, 'INFANT_COMPANION'),
         (CHILD, 'CHILD'),
+        (OLD, 'OLD')
     ]
 
     PROTECTOR_TYPES = [
@@ -50,7 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     user_type = models.CharField(max_length=20, choices=USER_TYPES, default=NONE, blank=True, help_text='유저 타입')
     challenged_type = models.CharField(max_length=50, blank=True)
-    protector_type = models.CharField(max_length=20, choices=PROTECTOR_TYPES, default=NONE, blank=True, help_text='보호자 타입')
+    protector_type = models.CharField(max_length=20, blank=True, help_text='보호자 타입')
     protector_phone = models.CharField(max_length=12, blank=True)
 
     is_admin = models.BooleanField(default=False)

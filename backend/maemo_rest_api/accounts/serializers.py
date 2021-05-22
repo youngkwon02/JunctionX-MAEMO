@@ -12,6 +12,10 @@ class UserSerializer(serializers.ModelSerializer):
 class UserSerializerWithToken(serializers.ModelSerializer):
     token = serializers.SerializerMethodField()
     phone = serializers.CharField(write_only=True)
+    user_type = serializers.ChoiceField(choices=User.USER_TYPES, help_text='회원가입 타입')
+    challenged_type = serializers.CharField(required=False)
+    protector_type = serializers.CharField(required=False)
+    protector_phone = serializers.CharField(required=False)
 
     def get_token(self, obj):
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -34,7 +38,11 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         fields = (
             'name', 
             'phone',
-            'token'
+            'token',
+            'user_type',
+            'challenged_type',
+            'protector_type',
+            'protector_phone'
             )
 
 

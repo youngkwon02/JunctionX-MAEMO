@@ -16,13 +16,58 @@ def current_user(request):
     serializer = UserSerializer(request.user)
     return Response(serializer.data)
 
+    NONE = 'none'
+    CHALLENGED = 'challenged'
+    INFANT_COMPANION = 'infant_companion'
+    PREGNANT = 'pregnant'
+    CHILD = 'child'
 
 class UserList(APIView):
     permission_classes = (permissions.AllowAny,)
 
+    def get_convert_user_type(self, user_type):
+        if user_type == "장애인":
+            return "challenged"
+        if user_type == "영유아 동반자":
+            return "infant_companion"
+        if user_type == "임산부":
+            return "pregnant"
+        if user_type == "어린이":
+            return "child"
+        if user_type == "고령자":
+            return "old"
+        if user_type == "해당없음":
+            return "none"    
+
+
     @action(methods=['POST'], detail=False)
     def post(self, request, format=None):
-        serializer = UserSerializerWithToken(data=request.data)
+        serializer_init_data = dict()
+
+        request_data = request.data
+        protector_type = request_data['protector_type']
+        user_type = request_data['user_type']
+        name = request_data['name']
+        phone = request_data['phone']
+        protector_phone = request_data.get('protector_phone')
+        challenged_type = request_data.get('challenged_type')
+        protector_type = request_data.get('protector_type')
+
+
+        user_type_data = self.get_convert_user_type(user_type)
+        print(user_type_data)
+        print(protector_phone)
+        print(challenged_type)
+        print(protector_type)
+        serializer_init_data['protector_type'] = protector_type
+        serializer_init_data['user_type'] = user_type_data
+        serializer_init_data['name'] = name
+        serializer_init_data['phone'] = phone
+        serializer_init_data['protector_phone'] = protector_phone
+        serializer_init_data['challenged_type'] = challenged_type
+        print(serializer_init_data)
+
+        serializer = UserSerializerWithToken(data=serializer_init_data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
