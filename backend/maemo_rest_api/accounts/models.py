@@ -1,31 +1,7 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, PermissionsMixin)
-
-
-class UserManager(BaseUserManager):
-    def create_user(self, name, phone, password=None):
-        if not name:
-            raise ValueError('Users must have a name')
-
-        user = self.model(
-            name=name,
-            phone=phone,
-        )
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_superuser(self, name, phone, password):
-        user = self.create_user(
-            name=name,
-            phone=phone,
-            password=password,
-        )
-        user.is_admin = True
-        user.save(using=self._db)
-        return user
-
+from django.contrib.auth.models import  (AbstractBaseUser, PermissionsMixin)
+from accounts.managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(
@@ -59,8 +35,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_admin
-
-
 
 
 class Profile(models.Model):
@@ -103,7 +77,6 @@ class Profile(models.Model):
         related_name='User'
     )
 
-    phone = models.CharField(max_length=12, blank=True)
     user_type = models.CharField(max_length=20, choices=USER_TYPES, default=NONE, blank=True, help_text='유저 타입')
     challenged_type = models.CharField(max_length=50, blank=True)
     protector_type = models.CharField(max_length=20, choices=PROTECTOR_TYPES, default=NONE, blank=True, help_text='보호자 타입')
