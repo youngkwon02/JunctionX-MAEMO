@@ -3,6 +3,9 @@ from reservation.models import Reservation
 from accounts.serializers import UserSerializer
 
 class ReservationSerializer(serializers.ModelSerializer):
+    date = serializers.CharField()
+    name = serializers.SerializerMethodField()
+
     class Meta:
         model = Reservation
         fields = (

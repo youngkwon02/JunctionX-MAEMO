@@ -101,6 +101,8 @@ class LocationAPI(APIView):
 
         response_data = {
             "fare_difference": fare_difference,
-            "is_profit" : self.is_profit(actual_taxi_fare, expected_fare)
+            "is_profit" : self.is_profit(actual_taxi_fare, expected_fare),
+            "actual_taxi_fare": actual_taxi_fare,
+            "expected_fare": expected_fare
         }
         return Response(response_data, status.HTTP_200_OK)
