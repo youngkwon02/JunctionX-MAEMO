@@ -26,8 +26,13 @@ class NotificationAPI(APIView):
                             algorithms=['HS256'])
 
         target_user = User.objects.get(id=auth['user_id'])
-
-        serializer_data = UserSerializer(target_user)
+        parsed_phone_number = target_user.protector_phone
+        parsing_phone_number = '+82'+str(''.join(parsed_phone_number.split('-')))
+        print(parsing_phone_number)
+        
         notification_client = NotificationClient()
-        notification_client.publish_message(phone_number='+8201075485351', message='test')
+        notification_client.publish_message(
+            phone_number='+8201075485351', 
+            message='test'
+        )
         return Response(status.HTTP_200_OK)

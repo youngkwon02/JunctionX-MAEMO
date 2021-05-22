@@ -42,6 +42,33 @@ class ReservationAPI(APIView):
         auth = jwt.decode(jwt=token, key=settings.SECRET_KEY, algorithms=['HS256'])
 
         user_instance = User.objects.get(id=auth['user_id'])
+        start_x = request.data['start_point_latitude']
+        start_y = request.data['start_point_longitude']
+        end_x = request.data['end_point_latitude']
+        end_y =  request.data['end_point_longitude']
+
+        print(start_x)
+        r = requests.post("https://apis.openapi.sk.com/tmap/routes?version=1&format=json&callback=result", 
+        data={
+            "appKey" : "l7xxc5a68ad4f4694ce69401820ade2405ea",
+			"startX" : str(start_x),
+		    "startY" : str(start_y),
+		    "endX" : str(end_x),
+		    "endY" : str(end_y),
+            # "startX" : "126.9850380932383",
+		    # "startY" : "37.566567545861645",
+		    # "endX" : "127.10331814639885",
+		    # "endY" : "37.403049076341794",
+		    "reqCoordType" : "WGS84GEO",
+		    "resCoordType" : "EPSG3857",
+        })
+        print(r)
+
+        taxi_api_json = r.json()
+        # print(taxi_api_json)
+        expected_texi_fare = taxi_api_json['features'][0]['properties']['taxiFare']
+        print(expected_texi_fare)
+        request.data['expected_texi_fare'] = expected_texi_fare
         reservation = Reservation.objects.create(user=user_instance)
         print(request.data)
         serializer_data = ReservationCreateSerializer(reservation, data=request.data)
@@ -73,6 +100,7 @@ class TaxiAPI(APIView):
 		    "resCoordType" : "EPSG3857",
         })
         taxi_api_json = r.json()
+        print(r)
         # print(taxi_api_json)
         expected_texi_fare = taxi_api_json['features'][0]['properties']['taxiFare']
         print(expected_texi_fare)

@@ -10,8 +10,8 @@ class NotificationClient:
     def __init__(self):
         self.client = boto3.client(
             NotificationClient.NotificationType.SNS,
-            aws_access_key_id="",
-            aws_secret_access_key="",
+            aws_access_key_id="AKIAYSFA6KP4USZMI77C",
+            aws_secret_access_key="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",
             region_name=NotificationClient.NotificationType.REGION_NORTHEAST_2
         )
 
