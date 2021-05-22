@@ -29,7 +29,13 @@ const RequestView = () => {
         requirement_information: msg
       }
       const res = await postAxios('/reservation', req)
-      console.log(res.data)
+      history.push({
+        pathname: "/complete",
+        state: {
+          expected_texi_fare: res.data.expected_texi_fare,
+          date: res.data.date, 
+        }
+      })
     } catch (error) {
       console.log(error)
       alert("예약 실패");
