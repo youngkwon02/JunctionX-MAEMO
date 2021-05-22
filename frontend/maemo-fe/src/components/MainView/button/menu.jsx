@@ -8,7 +8,7 @@ const StyledMenu = styled.button`
     color: black;
     border: none;
     font-weight: bold;
-    margin: 14px 0px;
+    margin: 10px 0px;
     border-radius: 16px;
 `;
 
