@@ -9,6 +9,7 @@ class Reservation(models.Model):
     start_point_longitude = models.CharField(max_length=12, blank=True)
     end_point_latitude = models.CharField(max_length=12, blank=True)
     end_point_longitude = models.CharField(max_length=12, blank=True)
+    requirement_information = models.CharField(max_length=200, blank=True)
     is_reservation_finished = models.BooleanField(default=False)
 
     def __str__(self):
