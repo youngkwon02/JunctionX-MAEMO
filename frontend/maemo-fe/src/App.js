@@ -8,6 +8,7 @@ import BookView from './views/BookView'
 import TimeView from './views/TimeView'
 import PositionView from './views/PositionView'
 import RequestView from './views/RequestView'
+import TrackingView from './views/TrackingView'
 
 function App() {
   const isLogin = useSelector(state => state.user.isLogin)
@@ -27,6 +28,7 @@ function App() {
         <Route path ="/time" component={TimeView}></Route>
         <Route path ="/position" component={PositionView}></Route>
         <Route path ="/request" component={RequestView}></Route>
+        <Route path ="/tracking" component={TrackingView}></Route>
       </Switch>
     </>
   )
