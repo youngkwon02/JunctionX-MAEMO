@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useHistory } from 'react-router-dom';
 import enterImg from '../assets/enter.svg'
 
-const MainView = () => {
+const EnterView = () => {
   const history = useHistory();
 
   return (
@@ -14,4 +14,4 @@ const MainView = () => {
   
 }
 
-export default MainView;
+export default EnterView;
