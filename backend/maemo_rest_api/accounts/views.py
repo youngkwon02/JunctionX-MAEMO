@@ -28,7 +28,7 @@ class UserList(APIView):
 
 
 class UserAPI(APIView):
-    authentication_classes = []   #이거 두줄은 권한이 없는 상태에서 데이테 요청을 가능하게
+    authentication_classes = []   #이거 두줄은 권한이 없는 상태에서 데이터 요청을 가능하게
     permission_classes = []       #만듬 settings.py에서도 아마 가능할 것 같음.
 
     @action(methods=['GET'], detail=True)
