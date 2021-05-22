@@ -2,12 +2,15 @@ import React, {useState, useEffect} from 'react'
 import styled, {css} from 'styled-components'
 import PositionBottom from '../components/PositionView/positionBottom'
 import axios from 'axios'
+import {useHistory} from 'react-router-dom'
 
 const PositionView = () => {
+  const history = useHistory()
   const [startPoint, setStart] = useState("")
   const [endPoint, setEnd] = useState("")
   const [startLocation, setStartLocation] = useState("")
   const [endLocation, setEndLocation] = useState("")
+  const [toggle, setToggle] = useState(true)
   useEffect(() => {
 
     const script = document.createElement("script");
@@ -55,6 +58,7 @@ const PositionView = () => {
   
 
   const setPointState = () => {
+    setToggle(!toggle)
     setStart((startPoint) => (document.querySelector('#startPoint').value));
     setEnd((endPoint) => (document.querySelector('#endPoint').value));
     convert(true, document.querySelector('#startPoint').value.split(","))
@@ -116,6 +120,19 @@ const PositionView = () => {
     bottom: 10px;
   `;
 
+  const applyToggle = (
+    <NextBtn onClick = {() => setPointState()}>적용하기</NextBtn>
+  )
+
+  const nextToggle = (
+    <NextBtn onClick = {() => {history.push({
+      pathname: "/request",
+      state: {"startLocation": startLocation,
+              "endLocation": endLocation
+            }
+    })}}>다음</NextBtn>
+  )
+
   return (
     <>
     <div id="TMapApp"
@@ -131,7 +148,7 @@ const PositionView = () => {
     <Line locationQue>어디로 이동하실 예정인가요?</Line>
     <Line locationHolder>{startLocation}</Line>
     <Line locationHolder>{endLocation}</Line>
-    <NextBtn onClick = {() => setPointState()}>다음</NextBtn>
+       {toggle ? applyToggle : nextToggle}
     </PositionBottom>
     </>
   )
