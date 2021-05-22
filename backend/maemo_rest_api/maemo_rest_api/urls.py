@@ -10,6 +10,6 @@ urlpatterns = [
 
     path('verify/', verify_jwt_token),
     path('refresh/', refresh_jwt_token),
-    path('user/', include('accounts.urls')),
-    path('reservation/', include('reservation.urls'))
+    path('user', include('accounts.urls')),
+    path('reservation', include('reservation.urls'))
 ]
