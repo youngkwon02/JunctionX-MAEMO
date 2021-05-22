@@ -6,6 +6,8 @@ from accounts.serializers import UserSerializer, UserSerializerWithToken, Profil
 from rest_framework import permissions, status, generics
 from accounts.models import User, Profile
 from rest_framework.decorators import action
+import jwt
+from maemo_rest_api import settings
 
 
 @api_view(['GET'])
@@ -26,14 +28,34 @@ class UserList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @action(methods=['GET'], detail=False)
+    def get(self, request, format=None):
+        token = request.META['HTTP_AUTHORIZATION']
+        print(token)
+        token = token[7:]
+        auth = jwt.decode(jwt=token, key=settings.SECRET_KEY,
+                          algorithms=['HS256'])
+
+        target_user = User.objects.get(id=auth['user_id'])
+
+        serializer_data = UserSerializer(target_user)
+        return Response(serializer_data.data, status=status.HTTP_200_OK)
+
 
 class UserAPI(APIView):
-    authentication_classes = []   #이거 두줄은 권한이 없는 상태에서 데이터 요청을 가능하게
-    permission_classes = []       #만듬 settings.py에서도 아마 가능할 것 같음.
+    authentication_classes = []  # 이거 두줄은 권한이 없는 상태에서 데이터 요청을 가능하게
+    permission_classes = []  # 만듬 settings.py에서도 아마 가능할 것 같음.
 
-    @action(methods=['GET'], detail=True)
-    def get(self, request, pk):
-        target_user = User.objects.get(id=pk)
+    @action(methods=['GET'], detail=False)
+    def get(self, request):
+        token = request.META['HTTP_AUTHORIZATION']
+        print(token)
+        token = token[7:]
+        auth = jwt.decode(jwt=token, key=settings.SECRET_KEY,
+                          algorithms=['HS256'])
+
+        target_user = User.objects.get(id=auth['user_id'])
+
         serializer_data = UserSerializer(target_user)
         return Response(serializer_data.data, status=status.HTTP_200_OK)
 
