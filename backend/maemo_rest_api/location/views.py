@@ -29,10 +29,10 @@ class NotificationAPI(APIView):
         parsed_phone_number = target_user.protector_phone
         parsing_phone_number = '+82'+str(''.join(parsed_phone_number.split('-')))
         print(parsing_phone_number)
-        
+
         notification_client = NotificationClient()
         notification_client.publish_message(
-            phone_number='+8201075485351', 
-            message='test'
+            phone_number= parsing_phone_number, 
+            message='예상 경로의 반경을 2km 이상 이탈했습니다. 보호자께서는 오지영님의 상황을 확인해주세요! 장시간 동안 연락이 되지 않는다면 긴급신고 112로 전화 부탁드립니다.'
         )
         return Response(status.HTTP_200_OK)
