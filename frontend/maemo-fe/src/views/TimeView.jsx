@@ -83,27 +83,22 @@ const TimeView = () => {
 
   const yearHandler = (e) => {
     setYear(e.target.value)
-    console.log(year)
   }
 
   const monthHandler = (e) => {
     setMonth(e.target.value)
-    console.log(month)
   }
 
   const dayHandler = (e) => {
     setDay(e.target.value)
-    console.log(day)
   }
 
   const hourHandler = (e) => {
     setHour(e.target.value)
-    console.log(hour)
   }
 
   const minHandler = (e) => {
     setMin(e.target.value)
-    console.log(min)
   }
 
 
@@ -136,10 +131,11 @@ const TimeView = () => {
         </div>
       </Wrapper>
       <SubmitButton onClick = {() => {
-        const data = `${year}-${month}-${day}-${toggle ? "오전" : "오후"}-${hour}-${min}`
+        const data = `${year}-${month}-${day}T${hour}:${min}:00+09:00`
+        const am = toggle
         history.push({
           pathname: "/position",
-          state: {"timeData": data}
+          state: {"timeData": data, "am": am}
         })}}>다음</SubmitButton>
     </Container>
   )
