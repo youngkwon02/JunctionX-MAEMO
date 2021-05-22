@@ -66,7 +66,7 @@ JWT_AUTH = {  # 추가
     'JWT_ALLOW_REFRESH': True,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=30),
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=3),
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'django_rest_api.global_utils.custom_response.my_jwt_response_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'maemo_rest_api.global_utils.custom_response.my_jwt_response_handler'
 }
 
 
