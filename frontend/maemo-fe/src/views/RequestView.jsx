@@ -34,6 +34,7 @@ const RequestView = () => {
         state: {
           expected_texi_fare: res.data.expected_texi_fare,
           date: res.data.date, 
+          is_am: res.data.is_am,
         }
       })
     } catch (error) {
