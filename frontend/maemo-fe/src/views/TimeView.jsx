@@ -3,6 +3,7 @@ import styled, {css} from 'styled-components'
 import Container from '../components/TimeView/div/container'
 import SubmitButton from '../components/TimeView/button/submitButton'
 import Input from '../components/TimeView/input/input'
+import {useHistory} from 'react-router-dom'
 
 const MainInfo = styled.div`
   text-align: center;
@@ -61,6 +62,7 @@ const RightToggle = styled.div`
 
 
 const TimeView = () => {
+  const history = useHistory()
   const [toggle, setToggle] = useState(true)
   const [year, setYear] = useState("")
   const [month, setMonth] = useState("")
@@ -123,7 +125,12 @@ const TimeView = () => {
         <Tags>분</Tags>
         </div>
       </Wrapper>
-      <SubmitButton>다음</SubmitButton>
+      <SubmitButton onClick = {() => {
+        const data = `${year}-${month}-${day}-${toggle ? "오전" : "오후"}-${hour}-${min}`
+        history.push({
+          pathname: "/position",
+          state: {"timeData": data}
+        })}}>다음</SubmitButton>
     </Container>
   )
 }
