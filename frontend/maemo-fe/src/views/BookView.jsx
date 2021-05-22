@@ -41,7 +41,7 @@ const BookView = () => {
   return (
     <Container>
       <BackIconBox>
-        <ArrowBackIcon onClick={() => history.push("/")}></ArrowBackIcon>
+        <ArrowBackIcon onClick={() => history.push("/main")}></ArrowBackIcon>
       </BackIconBox>
       <BookTitle>예약 현황</BookTitle>
       {Books}
