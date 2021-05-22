@@ -129,7 +129,9 @@ const PositionView = () => {
   const nextToggle = (
     <NextBtn onClick = {() => {history.push({
       pathname: "/request",
-      state: {"startLocation": startLocation,
+      state: {
+              "timeData": location.state.timeData,
+              "startLocation": startLocation,
               "endLocation": endLocation,
               "startPosition": document.querySelector('#startPoint').value.split(","),
               "endPosition": document.querySelector('#endPoint').value.split(",")
