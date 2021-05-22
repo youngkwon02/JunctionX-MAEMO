@@ -6,7 +6,6 @@ import {useHistory, useLocation} from 'react-router-dom'
 
 const PositionView = () => {
   const location = useLocation()
-  console.log(location.state)
   const history = useHistory()
   const [startPoint, setStart] = useState("")
   const [endPoint, setEnd] = useState("")
@@ -131,6 +130,7 @@ const PositionView = () => {
       pathname: "/request",
       state: {
               "timeData": location.state.timeData,
+              "is_am": location.state.am,
               "startLocation": startLocation,
               "endLocation": endLocation,
               "startPosition": document.querySelector('#startPoint').value.split(","),
