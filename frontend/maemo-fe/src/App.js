@@ -10,6 +10,7 @@ import PositionView from './views/PositionView'
 import RequestView from './views/RequestView'
 import TrackingView from './views/TrackingView'
 import CompleteView from './views/CompleteView'
+import FinalView from './views/finalView'
 
 function App() {
   const isLogin = useSelector(state => state.user.isLogin)
@@ -31,6 +32,7 @@ function App() {
         <Route path ="/request" component={RequestView}></Route>
         <Route path ="/tracking" component={TrackingView}></Route>
         <Route path ="/complete" component={CompleteView}></Route>
+        <Route path ="/final" component={FinalView}></Route>
       </Switch>
     </>
   )

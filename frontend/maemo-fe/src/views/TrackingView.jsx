@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import TrackingPath from '../assets/tracking.json'
 import Layer from '../components/TrackingView/layer/layer'
 import marker from '../assets/marker.svg'
+import {postAxios} from '../api/axios'
 
 const TrackingView = () => {
   useEffect(() => {
@@ -12,11 +13,20 @@ const TrackingView = () => {
     document.querySelector('#endX').value = TrackingPath[TrackingPath.length - 1].x;
     document.querySelector('#endY').value = TrackingPath[TrackingPath.length - 1].y;
     document.querySelector('#marker').value = marker;
-    
+
+    var target = document.getElementById('warning-layer');
+    var observer = new MutationObserver(function(mutations) 
+    { mutations.forEach(function(mutation) { 
+      postAxios('/notification');
+      observer.disconnect();
+     }); });
+
+
+    var config = { attributes: true, childList: true, characterData: true };
+    observer.observe(target, config);
+
     const script = document.createElement("script");
     script.innerHTML = `
-
-
         const getPoint = (pointX, pointY) => {
           return {"x": pointX, "y": pointY};
         }
@@ -26,7 +36,6 @@ const TrackingView = () => {
           diffY = (pointA.y - pointB.y <= 0) ? pointB.y - pointA.y : pointA.y - pointB.y;
           return Math.sqrt((diffX**2) + (diffY ** 2));
         }
-
         const isDeviation = (centerPoint, targetPoint, radius) => {
           let distance = getDistance(centerPoint, targetPoint);
           if(distance > radius) {
@@ -57,19 +66,16 @@ const TrackingView = () => {
           });
           let index = 0;
           let interval = setInterval(()=>{
-
             var marker = new Tmapv2.Marker({
               position: new Tmapv2.LatLng(JsonObj[index].x,JsonObj[index].y), //Marker의 중심좌표 설정.
               map: map //Marker가 표시될 Map 설정..
             });
-
             if(isDeviation(centerPoint, JsonObj[index], radius)) {
               console.log("Deviation");
               document.querySelector('#warning-layer').style.display = "block";
             }else {
               console.log("Not Deviation");
             }
-
             setInterval(()=>{
               let markersEle = document.querySelectorAll("#TMapApp > div > div:nth-child(3) > img");
               for(let i=0; i<markersEle.length; i++) {
@@ -80,6 +86,7 @@ const TrackingView = () => {
             }, 100);
             index += 1;
             if(index >= JsonObj.length) {
+              location.href="./final";
               clearInterval(interval);
             }
           }, 1000);
@@ -122,7 +129,7 @@ const TrackingView = () => {
     </BottomDiv>
     </>
   );
-  
+
 }
 
 export default TrackingView;
