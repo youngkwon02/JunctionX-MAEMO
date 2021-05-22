@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
 import TrackingPath from '../assets/tracking.json'
+import marker from '../assets/marker.svg'
 
 const TrackingView = () => {
   useEffect(() => {
@@ -9,8 +10,8 @@ const TrackingView = () => {
     document.querySelector('#startY').value = TrackingPath[0].y;
     document.querySelector('#endX').value = TrackingPath[TrackingPath.length - 1].x;
     document.querySelector('#endY').value = TrackingPath[TrackingPath.length - 1].y;
+    document.querySelector('#marker').value = marker;
     
-
     const script = document.createElement("script");
     script.innerHTML = `
         var map;
@@ -26,28 +27,31 @@ const TrackingView = () => {
           map = new Tmapv2.Map("TMapApp", {
             center: new Tmapv2.LatLng(centerX, centerY),
             width: "100%",
-            height: "80%",
-            zoom:15
+            height: "100%",
+            zoom:13
           });
           let index = 0;
           let interval = setInterval(()=>{
-            new Tmapv2.Circle({
-              center: new Tmapv2.LatLng(JsonObj[index].x,JsonObj[index].y),
-              radius: 4,
-              strokeColor: "red",
-              fillColor: "red",
-              map: map
+
+            var marker = new Tmapv2.Marker({
+              position: new Tmapv2.LatLng(JsonObj[index].x,JsonObj[index].y), //Marker의 중심좌표 설정.
+              map: map //Marker가 표시될 Map 설정..
             });
-            
+          setInterval(()=>{
+            let markersEle = document.querySelectorAll("#TMapApp > div > div:nth-child(3) > img");
+            for(let i=0; i<markersEle.length; i++) {
+              if(markersEle[i].src != document.querySelector('#marker').value){
+                markersEle[i].src = document.querySelector('#marker').value;
+              }
+            }
+          }, 100);
             index += 1;
             if(index >= JsonObj.length) {
-              console.log("ClearInterval");
               clearInterval(interval);
             }
-          }, 1000)
+          }, 1000);
         }
         initTmap();
-
         
    `;
     script.type = "text/javascript";
@@ -61,23 +65,26 @@ const TrackingView = () => {
     bottom: 0;
   `
 
+  const TrackingInput = styled.input`
+    display: none;
+  `
+
   return (
     <>
     <div id="TMapApp"
       style={{
-        height: "80%",
         width: "100%",
+        height: "100%",
         position: "fixed",
        }}
     />
     <BottomDiv>
-    <span>Start</span>
-    <input type="text" id="jsonData"></input>
-    <input id="startX" type="text"></input>
-    <input id="startY" type="text"></input><br />
-    <span>End</span>
-    <input id="endX" type="text"></input>
-    <input id="endY" type="text"></input><br />
+    <TrackingInput type="text" id="jsonData"></TrackingInput>
+    <TrackingInput id="startX" type="text"></TrackingInput>
+    <TrackingInput id="startY" type="text"></TrackingInput>
+    <TrackingInput id="endX" type="text"></TrackingInput>
+    <TrackingInput id="endY" type="text"></TrackingInput>
+    <TrackingInput id="marker" type="text"></TrackingInput>
     </BottomDiv>
     </>
   );
