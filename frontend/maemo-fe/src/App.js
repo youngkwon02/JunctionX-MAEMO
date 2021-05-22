@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import {useSelector} from 'react-redux'
+import EnterView from './views/EnterView'
 import MainView from './views/MainView'
 import LoginView from './views/LoginView'
 import BookView from './views/BookView'
@@ -19,7 +20,8 @@ function App() {
   const serviceRouter = (
     <>
       <Switch>
-        <Route exact path="/" component={MainView}></Route>
+        <Route exact path="/" component={EnterView}></Route>
+        <Route exact path="/main" component={MainView}></Route>
         <Route path ="/book" component={BookView}></Route>
         <Route path ="/time" component={TimeView}></Route>
         <Route path ="/position" component={PositionView}></Route>

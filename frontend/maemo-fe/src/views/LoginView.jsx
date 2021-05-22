@@ -85,7 +85,7 @@ const LoginView = () => {
       }
       const res = await postAxios('/login', req)
       dispatch(login(res.data.token))
-      history.push("/")
+      history.push("/main")
     } catch (error) {
       console.log(error)
     }
