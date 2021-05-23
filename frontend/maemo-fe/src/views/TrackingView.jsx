@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
-import TrackingPath from '../utils/banpo2yongsan.json' // Zoom Level: 13
+import TrackingPath from '../utils/trackingData/banpo2yongsan.json' // Zoom Level: 13
 import Layer from '../components/TrackingView/layer/layer'
 import marker from '../assets/marker.svg'
 import {postAxios} from '../api/axios'
