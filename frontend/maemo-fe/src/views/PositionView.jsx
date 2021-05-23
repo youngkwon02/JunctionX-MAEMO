@@ -1,12 +1,17 @@
 import React, {useState, useEffect} from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
+import PositionBottom from '../components/PositionView/positionBottom'
 import axios from 'axios'
+import {useHistory, useLocation} from 'react-router-dom'
 
 const PositionView = () => {
+  const location = useLocation()
+  const history = useHistory()
   const [startPoint, setStart] = useState("")
   const [endPoint, setEnd] = useState("")
   const [startLocation, setStartLocation] = useState("")
   const [endLocation, setEndLocation] = useState("")
+  const [toggle, setToggle] = useState(true)
   useEffect(() => {
 
     const script = document.createElement("script");
@@ -17,7 +22,7 @@ const PositionView = () => {
           map = new Tmapv2.Map("TMapApp", {
             center: new Tmapv2.LatLng(37.566481622437934,126.98502302169841),
             width: "100%",
-            height: "80%",
+            height: "70%",
             zoom:11
           });
           map.addListener("click", onClick);
@@ -35,11 +40,9 @@ const PositionView = () => {
             map: map //Marker가 표시될 Map 설정.
           });
           markers.push(marker);
-          if(markers.length === 2) {
-            setTimeout(()=>{
-              document.querySelector('#startPoint').value = markers[0]._marker_data.options.position._lng + ',' + markers[0]._marker_data.options.position._lat
-              document.querySelector('#endPoint').value = markers[1]._marker_data.options.position._lng + ',' + markers[1]._marker_data.options.position._lat
-            },500);
+        if(markers.length === 2) {
+            document.querySelector('#startPoint').value = markers[0]._marker_data.options.position._lng + ',' + markers[0]._marker_data.options.position._lat
+            document.querySelector('#endPoint').value = markers[1]._marker_data.options.position._lng + ',' + markers[1]._marker_data.options.position._lat
           }
         }
         function removeMarkers() {
@@ -56,6 +59,7 @@ const PositionView = () => {
   
 
   const setPointState = () => {
+    setToggle(!toggle)
     setStart((startPoint) => (document.querySelector('#startPoint').value));
     setEnd((endPoint) => (document.querySelector('#endPoint').value));
     convert(true, document.querySelector('#startPoint').value.split(","))
@@ -85,21 +89,73 @@ const PositionView = () => {
         });
   }
 
+  const Line = styled.div`
+    ${(props) =>
+      props.locationQue &&
+      css`
+      font-weight: bold;
+    `}
+    ${(props) =>
+      props.locationHolder &&
+      css`
+        margin-top: 8px;
+        border-bottom: 2px solid rgba(0, 0, 0, .2);
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-weight: normal;
+    `}
+  `;
+
+  const NextBtn = styled.button`
+    width: calc(100% - 40px);
+    height: 50px;
+    background-color: #fef000;
+    color: black;
+    border: none;
+    font-weight: bold;
+    margin-top: 30px;
+    border-radius: 14px;
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+  `;
+
+  const applyToggle = (
+    <NextBtn onClick = {() => setPointState()}>적용하기</NextBtn>
+  )
+
+  const nextToggle = (
+    <NextBtn onClick = {() => {history.push({
+      pathname: "/request",
+      state: {
+              "timeData": location.state.timeData,
+              "is_am": location.state.am,
+              "startLocation": startLocation,
+              "endLocation": endLocation,
+              "startPosition": document.querySelector('#startPoint').value.split(","),
+              "endPosition": document.querySelector('#endPoint').value.split(",")
+            }
+    })}}>다음</NextBtn>
+  )
 
   return (
     <>
     <div id="TMapApp"
       style={{
-        height: "80%",
+        height: "70%",
         width: "100%",
         position: "fixed",
        }}
     />
     <input type="text" id="startPoint"></input>
     <input type="text" id="endPoint"></input>
-    <div onClick = {() => setPointState()} style={{position: "absolute", bottom: "0"}}>적용하기</div>
-    <div style={{position: "absolute", bottom: "20px"}}>{startLocation}</div>
-    <div style={{position: "absolute", bottom: "10px"}}>{endLocation}</div>
+    <PositionBottom>
+    <Line locationQue>어디로 이동하실 예정인가요?</Line>
+    <Line locationHolder>{startLocation}</Line>
+    <Line locationHolder>{endLocation}</Line>
+       {toggle ? applyToggle : nextToggle}
+    </PositionBottom>
     </>
   )
 }

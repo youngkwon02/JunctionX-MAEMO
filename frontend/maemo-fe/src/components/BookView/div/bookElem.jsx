@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 import BookElemTop from "./bookElemTop";
+import {standardTime} from "../../../utils/time2str"
 
 const StyledBookElem = styled.div`
   width: 100%;
@@ -33,10 +34,10 @@ const BookElem = ({children, ...props}) => {
   return (
       <>
         <StyledBookElem>
-          <BookElemTop>예약번호 {props.data.seq}</BookElemTop>
-          <Line bold>{props.data.time}</Line>
-          <Line><LineTitle>출발 위치</LineTitle>{props.data.start}</Line>
-          <Line><LineTitle>도착 위치</LineTitle>{props.data.end}</Line>
+          <BookElemTop>예약번호 {props.num}</BookElemTop>
+          <Line bold>{standardTime(props.data.date, props.data.is_am)}</Line>
+          <Line><LineTitle>출발 위치</LineTitle>{props.data.start_point}</Line>
+          <Line><LineTitle>도착 위치</LineTitle>{props.data.end_point}</Line>
         </StyledBookElem>
       </>
   )

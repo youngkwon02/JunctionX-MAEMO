@@ -77,17 +77,18 @@ const LoginView = () => {
     try {
       const req = {
         name,
-        phoneNumber: phone,
-        userType,
-        challenge,
-        relate,
-        relatePhone,
+        phone,
+        user_type: userType,
+        challenged_type: challenge,
+        protector_type: relate,
+        protector_phone: relatePhone,
       }
-      const res = await postAxios('/login', req)
+      const res = await postAxios('/user', req)
       dispatch(login(res.data.token))
-      history.push("/")
+      history.push("/main")
     } catch (error) {
       console.log(error)
+      history.push("/login")
     }
   }
 

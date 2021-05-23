@@ -2,7 +2,9 @@ import React, {useState} from 'react'
 import styled, {css} from 'styled-components'
 import Container from '../components/TimeView/div/container'
 import SubmitButton from '../components/TimeView/button/submitButton'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Input from '../components/TimeView/input/input'
+import {useHistory} from 'react-router-dom'
 
 const MainInfo = styled.div`
   text-align: center;
@@ -58,9 +60,16 @@ const RightToggle = styled.div`
   margin-right: 6px;
 `
 
+const BackIconBox = styled.div`
+  width: 20px;
+  height: 20px;
+  position: fixed;
+  top: 20px;
+`
 
 
 const TimeView = () => {
+  const history = useHistory();
   const [toggle, setToggle] = useState(true)
   const [year, setYear] = useState("")
   const [month, setMonth] = useState("")
@@ -74,32 +83,30 @@ const TimeView = () => {
 
   const yearHandler = (e) => {
     setYear(e.target.value)
-    console.log(year)
   }
 
   const monthHandler = (e) => {
     setMonth(e.target.value)
-    console.log(month)
   }
 
   const dayHandler = (e) => {
     setDay(e.target.value)
-    console.log(day)
   }
 
   const hourHandler = (e) => {
     setHour(e.target.value)
-    console.log(hour)
   }
 
   const minHandler = (e) => {
     setMin(e.target.value)
-    console.log(min)
   }
 
 
   return (
     <Container>
+      <BackIconBox>
+        <ArrowBackIcon onClick={() => history.push("/main")}></ArrowBackIcon>
+      </BackIconBox>
       <MainInfo>언제 이동하실 예정인가요?</MainInfo>
       <Wrapper>
         <div>
@@ -123,7 +130,13 @@ const TimeView = () => {
         <Tags>분</Tags>
         </div>
       </Wrapper>
-      <SubmitButton>다음</SubmitButton>
+      <SubmitButton onClick = {() => {
+        const data = `${year}-${month}-${day}T${hour}:${min}`
+        const am = toggle
+        history.push({
+          pathname: "/position",
+          state: {"timeData": data, "am": am}
+        })}}>다음</SubmitButton>
     </Container>
   )
 }
