@@ -8,7 +8,7 @@ const StyledBookingButton = styled.button`
     color: black;
     border: none;
     font-weight: bold;
-    margin-top: 30px;
+    margin-top: 20px;
     border-radius: 14px;
 `;
 

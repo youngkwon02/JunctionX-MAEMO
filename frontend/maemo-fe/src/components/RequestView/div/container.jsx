@@ -10,7 +10,7 @@ const StyledContainer = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -180px;
+    margin-top: -200px;
     margin-left: -160px;
 `;
 

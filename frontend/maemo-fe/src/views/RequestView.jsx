@@ -5,6 +5,7 @@ import TextArea from '../components/RequestView/input/textarea'
 import BookingButton from '../components/RequestView/button/booking'
 import {useHistory, useLocation} from 'react-router-dom'
 import {postAxios} from '../api/axios'
+import microphone from '../assets/microphone.png'
 
 const RequestView = () => {
   const history = useHistory()
@@ -47,7 +48,8 @@ const RequestView = () => {
   return (
     <Container>
       <Hello></Hello>
-      <TextArea onChange={requestHandler}></TextArea>
+      <TextArea onChange={requestHandler}></TextArea><br/><br/>
+      <img src={microphone} widt="50px" height="50px"></img>
       <BookingButton onClick={clickHandler}>예약하기</BookingButton>
     </Container>
   )
