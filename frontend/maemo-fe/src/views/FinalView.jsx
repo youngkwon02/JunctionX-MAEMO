@@ -71,7 +71,6 @@ const FinalView = () => {
         <Line>이용해주셔서 감사합니다.</Line><br/><br/>
         <Line inline>결제 금액&nbsp;&nbsp;</Line><Line underline>{`${originFare}원`}</Line><br />
         <Line smallWidth>
-          <img src={check} width="20px" height="20px" style={{"float": 'left'}}></img>&nbsp;
           <Line inline>예상 금액보다&nbsp;&nbsp;</Line><Line underline>{`${fare}원`}</Line><Line inline>&nbsp;{profit ? `낮습니다.` : `높습니다.`}</Line>
         </Line><br/>
         <Button url='/main'>홈으로 돌아가기</Button>
