@@ -1,15 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
 // import TrackingPath from '../utils/trackingData/banpo2yongsan.json' // Zoom Level: 13
-import TrackingPath from '../utils/trackingData/gwanghwa2jonggak.json' // Zoom Level: 15
-// import TrackingPath from '../utils/trackingData/deviation/gwanghwa2jonggak.json' // Zoom Level: 15
+import CorrectPath from '../utils/trackingData/gwanghwa2jonggak.json' // Zoom Level: 15
+import TrackingPath from '../utils/trackingData/deviation/gwanghwa2jonggak.json' // Zoom Level: 14
 import Layer from '../components/TrackingView/layer/layer'
 import marker from '../assets/marker.svg'
 import {postAxios} from '../api/axios'
+import alarmSound from '../assets/alarm.mp3'
 
 const TrackingView = () => {
   useEffect(() => {
+    document.querySelector('#correctData').value = JSON.stringify(CorrectPath);
     document.querySelector('#jsonData').value = JSON.stringify(TrackingPath);
+    document.querySelector('#alarmMp3').value = alarmSound;
     document.querySelector('#startX').value = TrackingPath[0].x;
     document.querySelector('#startY').value = TrackingPath[0].y;
     document.querySelector('#endX').value = TrackingPath[TrackingPath.length - 1].x;
@@ -50,6 +53,7 @@ const TrackingView = () => {
         
         var map;
         var markers = [];
+        let isAlarmed = false;
         const startX = parseFloat(document.querySelector('#startX').value);
         const startY = parseFloat(document.querySelector('#startY').value);
         const startPoint = getPoint(startX, startY);
@@ -59,26 +63,45 @@ const TrackingView = () => {
         const centerY = (startY + endY) / 2;
         const centerPoint = getPoint(centerX, centerY);
         const radius = getDistance(startPoint, centerPoint);
+        const CorrectObj = JSON.parse(document.querySelector('#correctData').value);
         const JsonObj = JSON.parse(document.querySelector('#jsonData').value);
+        let alarm = new Audio(document.querySelector('#alarmMp3').value);
+
         function initTmap() {
           map = new Tmapv2.Map("TMapApp", {
-            center: new Tmapv2.LatLng(centerX, centerY),
+            // Under startY should be replaced after Demo
+            center: new Tmapv2.LatLng(centerX, startY),
             width: "100%",
             height: "100%",
             zoom:15
           });
           let index = 0;
+
+          var polyline = new Tmapv2.Polyline({
+            path: [
+              new Tmapv2.LatLng(CorrectObj[0].x, CorrectObj[0].y),
+              new Tmapv2.LatLng(CorrectObj[9].x, CorrectObj[9].y),
+              new Tmapv2.LatLng(CorrectObj[14].x, CorrectObj[14].y),
+            ],
+            strokeColor: "#dd00dd", // 라인 색상
+            strokeWeight: 4, // 라인 두께
+            map: map // 지도 객체
+          });
+
           let interval = setInterval(()=>{
             var marker = new Tmapv2.Marker({
               position: new Tmapv2.LatLng(JsonObj[index].x,JsonObj[index].y), //Marker의 중심좌표 설정.
               map: map //Marker가 표시될 Map 설정..
             });
-            if(index != JsonObj.length-1 && isDeviation(centerPoint, JsonObj[index], radius)) {
+            if(!isAlarmed && isDeviation(centerPoint, JsonObj[index], radius)) {
               console.log("Deviation");
+              isAlarmed = true;
               document.querySelector('#warning-layer').style.display = "block";
+              alarm.play();
             }else {
               console.log("Not Deviation");
             }
+
             setInterval(()=>{
               let markersEle = document.querySelectorAll("#TMapApp > div > div:nth-child(3) > img");
               for(let i=0; i<markersEle.length; i++) {
@@ -89,7 +112,9 @@ const TrackingView = () => {
             }, 100);
             index += 1;
             if(index >= JsonObj.length) {
-              location.href="./final";
+              if(!isAlarmed) {
+                location.href="./final";
+              }
               clearInterval(interval);
             }
           }, 1000);
@@ -122,7 +147,9 @@ const TrackingView = () => {
     />
     <Layer id="warning-layer">예상 경로를<br/>벗어났습니다.<br/><br/>보호자에게 문자를 전송합니다.</Layer>
     <BottomDiv>
+    <TrackingInput id="correctData" type="text"></TrackingInput>
     <TrackingInput id="jsonData" type="text"></TrackingInput>
+    <TrackingInput id="alarmMp3" type="text"></TrackingInput>
     <TrackingInput id="startX" type="text"></TrackingInput>
     <TrackingInput id="startY" type="text"></TrackingInput>
     <TrackingInput id="endX" type="text"></TrackingInput>
