@@ -17,7 +17,7 @@ const TextArea = ({children, ...props}) => {
     return (
         <>
         	<StyledTextArea onChange={props.onChange}>
-          {children}
+          {props.sound}
           </StyledTextArea>
         </>
     )

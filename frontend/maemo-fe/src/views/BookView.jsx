@@ -27,6 +27,7 @@ const BookView = () => {
     try {
       const res = await getAxios('/reservation')
       setReservation(res.data)
+      console.log(res)
     } catch (error) {
       console.log(error)
     }

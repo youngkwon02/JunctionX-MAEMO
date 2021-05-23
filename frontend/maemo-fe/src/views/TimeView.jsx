@@ -131,7 +131,7 @@ const TimeView = () => {
         </div>
       </Wrapper>
       <SubmitButton onClick = {() => {
-        const data = `${year}-${month}-${day}T${hour}:${min}:00+09:00`
+        const data = `${year}-${month}-${day}T${hour}:${min}`
         const am = toggle
         history.push({
           pathname: "/position",

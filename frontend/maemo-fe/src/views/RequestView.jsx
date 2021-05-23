@@ -1,11 +1,20 @@
 import React, {useState} from 'react'
+import styled from 'styled-components'
 import Container from '../components/RequestView/div/container'
 import Hello from '../components/RequestView/div/hello'
 import TextArea from '../components/RequestView/input/textarea'
 import BookingButton from '../components/RequestView/button/booking'
 import {useHistory, useLocation} from 'react-router-dom'
-import {postAxios} from '../api/axios'
+import {getAxios, postAxios} from '../api/axios'
 import microphone from '../assets/microphone.png'
+
+const MicroPhone = styled.img`
+  width: 50px;
+  height: 50px;
+  &:hover{
+    background-color: red;
+  }
+`
 
 const RequestView = () => {
   const history = useHistory()
@@ -15,6 +24,17 @@ const RequestView = () => {
   const requestHandler = (e) => {
     setMsg(e.target.value)
   };
+
+  const soundHandler = async () => {
+    try {
+      const res = await getAxios("/stt")
+      document.querySelector("#root > div > textarea").innerHTML = res.data.requirement_information;
+    } catch (error) {
+      console.log(error)
+      alert("음성인식 불가")
+    }
+  }
+  
 
   const clickHandler = async () => {
     try {
@@ -27,7 +47,7 @@ const RequestView = () => {
         end_point_longitude: state.endPosition[1],
         start_point: state.startLocation,
         end_point: state.endLocation,
-        requirement_information: msg
+        requirement_information: msg ? msg : document.querySelector("#root > div > textarea").innerHTML
       }
       const res = await postAxios('/reservation', req)
       history.push({
@@ -49,7 +69,7 @@ const RequestView = () => {
     <Container>
       <Hello></Hello>
       <TextArea onChange={requestHandler}></TextArea><br/><br/>
-      <img src={microphone} widt="50px" height="50px"></img>
+      <MicroPhone onClick={() => soundHandler()} src={microphone}></MicroPhone>
       <BookingButton onClick={clickHandler}>예약하기</BookingButton>
     </Container>
   )

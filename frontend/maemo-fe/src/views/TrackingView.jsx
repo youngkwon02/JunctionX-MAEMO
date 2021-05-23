@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
 // import TrackingPath from '../utils/trackingData/banpo2yongsan.json' // Zoom Level: 13
-import TrackingPath from '../utils/trackingData/gwanghwa2jonggak.json' // Zoom Level: 15
-// import TrackingPath from '../utils/trackingData/deviation/gwanghwa2jonggak.json' // Zoom Level: 15
+// import TrackingPath from '../utils/trackingData/gwanghwa2jonggak.json' // Zoom Level: 15
+import TrackingPath from '../utils/trackingData/deviation/gwanghwa2jonggak.json' // Zoom Level: 15
 import Layer from '../components/TrackingView/layer/layer'
 import marker from '../assets/marker.svg'
 import {postAxios} from '../api/axios'
