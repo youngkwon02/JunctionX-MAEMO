@@ -10,7 +10,7 @@ import PositionView from './views/PositionView'
 import RequestView from './views/RequestView'
 import TrackingView from './views/TrackingView'
 import CompleteView from './views/CompleteView'
-import FinalView from './views/finalView'
+import FinalView from './views/FinalView'
 
 function App() {
   const isLogin = useSelector(state => state.user.isLogin)
