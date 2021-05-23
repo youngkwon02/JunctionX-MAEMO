@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
-import TrackingPath from '../assets/tracking.json'
+// import TrackingPath from '../utils/trackingData/banpo2yongsan.json' // Zoom Level: 13
+import TrackingPath from '../utils/trackingData/gwanghwa2jonggak.json' // Zoom Level: 15
+// import TrackingPath from '../utils/trackingData/deviation/gwanghwa2jonggak.json' // Zoom Level: 15
 import Layer from '../components/TrackingView/layer/layer'
 import marker from '../assets/marker.svg'
 import {postAxios} from '../api/axios'
@@ -34,7 +36,8 @@ const TrackingView = () => {
         const getDistance = (pointA, pointB) => {
           diffX = (pointA.x - pointB.x <= 0) ? pointB.x - pointA.x : pointA.x - pointB.x;
           diffY = (pointA.y - pointB.y <= 0) ? pointB.y - pointA.y : pointA.y - pointB.y;
-          return Math.sqrt((diffX**2) + (diffY ** 2));
+          let sqrt = Math.sqrt((diffX**2) + (diffY ** 2));
+          return sqrt;
         }
         const isDeviation = (centerPoint, targetPoint, radius) => {
           let distance = getDistance(centerPoint, targetPoint);
@@ -62,7 +65,7 @@ const TrackingView = () => {
             center: new Tmapv2.LatLng(centerX, centerY),
             width: "100%",
             height: "100%",
-            zoom:13
+            zoom:15
           });
           let index = 0;
           let interval = setInterval(()=>{
@@ -70,7 +73,7 @@ const TrackingView = () => {
               position: new Tmapv2.LatLng(JsonObj[index].x,JsonObj[index].y), //Marker의 중심좌표 설정.
               map: map //Marker가 표시될 Map 설정..
             });
-            if(isDeviation(centerPoint, JsonObj[index], radius)) {
+            if(index != JsonObj.length-1 && isDeviation(centerPoint, JsonObj[index], radius)) {
               console.log("Deviation");
               document.querySelector('#warning-layer').style.display = "block";
             }else {
