@@ -117,7 +117,7 @@ const TrackingView = () => {
               }
               clearInterval(interval);
             }
-          }, 1000);
+          }, 900);
         }
         initTmap();
    `;
