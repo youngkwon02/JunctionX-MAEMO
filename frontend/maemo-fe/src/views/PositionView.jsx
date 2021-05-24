@@ -65,7 +65,7 @@ const PositionView = () => {
     convert(true, document.querySelector('#startPoint').value.split(","))
     convert(false, document.querySelector('#endPoint').value.split(","))
   }
-  const REST_API_KEY = "f3a651e3f7153a7dd0db7dca8d289354"
+  const REST_API_KEY = ""
   const convert = (location, pos) => {
     const [x, y] = pos
     location === true 
