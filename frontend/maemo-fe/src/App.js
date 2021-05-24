@@ -8,7 +8,7 @@ import BookView from './views/BookView'
 import TimeView from './views/TimeView'
 import PositionView from './views/PositionView'
 import RequestView from './views/RequestView'
-import TrackingView from './views/TrackingView'
+import TrackingView from './views/CorrectTrackingView'
 import CompleteView from './views/CompleteView'
 import FinalView from './views/FinalView'
 
