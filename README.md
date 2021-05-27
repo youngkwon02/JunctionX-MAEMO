@@ -1,26 +1,9 @@
 # Junction X Seoul ReadMe 
 
 ---
-목차
 
-
-# 컨트리뷰터
-# 데모영상 주소
-# 피피티 발표자료
-# 프로젝트 소개
-    - 프로젝트 주제
-    - 프로젝트 기능설명 (간단히) 실행화면(GIF)
-    - 프로젝트 구성도
-    - 프로젝트 실행방법
-# 기술스택
-    - 기획 / 디자인
-    - FE
-    - BE
-    - 공통
-
----
 ## 🖥 DEMO & PT
-[MAEMO Demo Video](https://drive.google.com/file/d/1RpaaXA7kBkUNr3A9wUS-fm2BuSunr9Rv/view?usp=sharing)
+[MAEMO Demo Video](https://drive.google.com/file/d/1RpaaXA7kBkUNr3A9wUS-fm2BuSunr9Rv/view?usp=sharing)<br/>
 [MAEMO PT](https://drive.google.com/file/d/1Bcy2XAKEcHf_4aRckK3r1KDvj7ik0--q/view?usp=sharing)
 
 ## 💫 Contributors
