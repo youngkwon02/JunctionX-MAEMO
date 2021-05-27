@@ -1,4 +1,4 @@
-# Junction X Seoul ReadMe 
+# 👑 Junction X Team MAEMO 
 
 ---
 
