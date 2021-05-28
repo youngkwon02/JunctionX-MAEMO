@@ -34,7 +34,7 @@
 
 ### Back-End
 
-| <img width= 50 src="https://i.imgur.com/HBe7lJ1.png"> | <img width= 50 src="https://i.imgur.com/d16B0dn.png"> | <img width= 50 src="https://i.imgur.com/Qd8bEMR.png"> | <img width= 50 src="https://i.imgur.com/vAVZaAc.png"> |
+| <img width="50" alt="drf" src="https://user-images.githubusercontent.com/39653584/119949129-875e2c80-bfd4-11eb-9609-6a031eef823f.png"> | <img width= 50 src="https://i.imgur.com/d16B0dn.png"> | <img width= 50 src="https://i.imgur.com/Qd8bEMR.png"> | <img width= 50 src="https://i.imgur.com/vAVZaAc.png"> |
 | :----------------------------------------------------------: | :---------------------------------------------------: | :----------------------------------------------------------: | :---------------------------------------------------: |
 |                          DRF                          |                          aws                          |                            Google Speech Recognition                             |                          Cloud Watch                          |
 
