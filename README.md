@@ -3,13 +3,13 @@
 ---
 
 ## 🖥 DEMO & PT
-[MAEMO Demo Video](https://drive.google.com/file/d/1RpaaXA7kBkUNr3A9wUS-fm2BuSunr9Rv/view?usp=sharing)<br/>
-[MAEMO PT](https://drive.google.com/file/d/1Bcy2XAKEcHf_4aRckK3r1KDvj7ik0--q/view?usp=sharing)
+[MAEMO x Demo Video](https://drive.google.com/file/d/1RpaaXA7kBkUNr3A9wUS-fm2BuSunr9Rv/view?usp=sharing)<br/>
+[MAEMO x PDF](https://drive.google.com/file/d/1Bcy2XAKEcHf_4aRckK3r1KDvj7ik0--q/view?usp=sharing)
 
 ## 💫 Contributors
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/minji9611"><img src="https://avatars.githubusercontent.com/u/81851584?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Minji Kim</b></sub></a><br />PM</td>
+    <td align="center"><a href="https://github.com/minji9611"><img src="https://avatars.githubusercontent.com/u/81851584?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Minji Kim</b></sub></a><br />Designer</td>
     <td align="center"><a href="https://github.com"><img src="https://avatars.githubusercontent.com/u/81851584?v=4?s=200" width="200px;" alt=""/><br /><sub><b>YunA Jin</b></sub></a><br />Designer</td>
     <td align="center"><a href="https://github.com/youngkwon02"><img src="https://avatars.githubusercontent.com/u/39653584?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Youngkwon Kim</b></sub></a><br />Front-End</td>
     <td align="center"><a href="https://github.com/Zigje9"><img src="https://avatars.githubusercontent.com/u/46099115?v=4?s=200" width="200px;" alt=""/><br /><sub><b>JeKoo Park</b></sub></a><br />Front-End</td>
