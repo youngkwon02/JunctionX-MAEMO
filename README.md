@@ -1,9 +1,11 @@
 # 👑 Junction X Team MAEMO 
 * Barrier Free is the Best Friend
+
+<img width="1128" alt="junctionX" src="https://user-images.githubusercontent.com/39653584/157028574-4fc013a6-68e1-4068-917f-2103fe7f44b5.png">
+
 ---
 
-## 🖥 DEMO & PT
-[MAEMO x Demo Video](https://drive.google.com/file/d/1RpaaXA7kBkUNr3A9wUS-fm2BuSunr9Rv/view?usp=sharing)<br/>
+## 🖥 Presentation
 [MAEMO x PDF](https://drive.google.com/file/d/1Bcy2XAKEcHf_4aRckK3r1KDvj7ik0--q/view?usp=sharing)
 
 ## 💫 Contributors
